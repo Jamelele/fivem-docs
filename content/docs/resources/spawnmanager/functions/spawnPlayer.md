@@ -16,12 +16,12 @@ spawnPlayer
 ## Parameters
 
 ```
-int spawnIdx, function callback(object spawn)
+int spawn, function callback(object spawn)
 ```
 
 ### Optional Arguments
 
- - `spawnIdx` this can be a spawn point from a map resource registered by [mapmanager](../../../mapmanager), or can be added with [addSpawnPoint](./functions/addSpawnPoint). If this isn't specified, a random spawn point will be picked out of the already registered spawn points (if any).
+ - `spawn` this can be an index spawn point from a map resource registered by [mapmanager](../../../mapmanager), or can be added with [addSpawnPoint](./functions/addSpawnPoint). Alternatively you can just use a `spawn` object. If this isn't specified, a random spawn point will be picked out of the already registered spawn points (if any).
 
 - `callback` is executed once the player has successfully spawned and passes a `spawn` object as specified in [playerSpawned](../../events/playerSpawned).
 
@@ -36,6 +36,21 @@ exports.spawnmanager:spawnPlayer()
 ```lua
 -- Spawns the player at a specific spawnpoint with a callback
 exports.spawnmanager:spawnPlayer(1, function(spawn)
+    TriggerEvent('chat:addMessage', { args = { 'You have spawned! Congrats!' } })
+end)
+```
+
+Or if you don't want to use a static spawnpoint, just pass a `spawn` object.
+
+```lua
+exports.spawnmanager:spawnPlayer({
+    x = 466.8401,
+    y = 197.7201,
+    z = 111.5291,
+    heading = 291.71,
+    model = GetHashKey('a_m_y_skater_01'),
+    skipFade = false
+}, function(spawn)
     TriggerEvent('chat:addMessage', { args = { 'You have spawned! Congrats!' } })
 end)
 ```

@@ -26,13 +26,14 @@ Examples
 ##### Lua Example:
 ```lua
 -- Add a new spawnpoint!
-local mySpawnPoint = exports.spawnmanager:addSpawnPoint({
-    z = 111.5291,
-    y = 197.7201,
+-- This export returns the index of the spawnpoint just created, so we can assign it to a variable.
+local spawnpoint = exports.spawnmanager:addSpawnPoint({
     x = 466.8401,
+    y = 197.7201,
+    z = 111.5291,
     heading = 291.71,
-    idx = 6,
-    model = 1631478380
+    model = GetHashKey('a_m_y_skater_01'),
+    skipFade = false
 })
 
 -- Now let's remove it...
